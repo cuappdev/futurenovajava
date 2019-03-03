@@ -6,10 +6,10 @@ public class APIResponse<T> {
     private T data;
 
     public boolean getSuccess() {
-        return this.success;
+        return success;
     }
 
     public T getData() {
-        return this.data;
+        return data;
     }
 }

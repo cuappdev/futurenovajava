@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Endpoint allStopsEndpoint = new Endpoint().path("allstops").method(Endpoint.Method.GET);
 
-        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept(response -> {
+        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept((APIResponse<Stops[]> response) -> {
             System.out.println(response);
         });
 
