@@ -2,6 +2,8 @@ package com.appdev.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.appdev.futurenovajava.Endpoint;
+import com.appdev.futurenovajava.FutureNovaRequest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         Endpoint allStopsEndpoint = new Endpoint().path("allstops").method(Endpoint.Method.GET);
 
-        Request.make(Stops[].class, allStopsEndpoint).thenAccept(response -> {
-            System.out.println(response.success);
+        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept(response -> {
+            System.out.println(response);
         });
 
     }

@@ -16,7 +16,7 @@ public class FutureNovaRequest {
     private static OkHttpClient client = new OkHttpClient();
     private static Gson gson = new Gson();
 
-    static <T> CompletableFuture<APIResponse<T>> make(Class<T> type, Endpoint endpoint) {
+    public static <T> CompletableFuture<APIResponse<T>> make(Class<T> type, Endpoint endpoint) {
         Call call = client.newCall(endpoint.request());
         OkHttpResponseFuture result = new OkHttpResponseFuture();
         call.enqueue(result);
@@ -33,7 +33,7 @@ public class FutureNovaRequest {
         });
     }
 
-    static Type getType(Class<?> rawClass, Class<?> parameter) {
+    private static Type getType(Class<?> rawClass, Class<?> parameter) {
         return new ParameterizedType() {
             @Override
             public Type[] getActualTypeArguments() {
