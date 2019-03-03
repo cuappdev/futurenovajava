@@ -2,6 +2,7 @@ package com.appdev.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.appdev.futurenovajava.APIResponse;
 import com.appdev.futurenovajava.Endpoint;
 import com.appdev.futurenovajava.FutureNovaRequest;
 
