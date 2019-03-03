@@ -21,9 +21,9 @@ public class FutureNovaRequest {
         OkHttpResponseFuture result = new OkHttpResponseFuture();
         call.enqueue(result);
         return result.future.thenApply((Response response) -> {
-            System.out.println("HEREEE");
             try {
                 String body = response.body().string();
+                System.out.println(body);
                 APIResponse<T> apiResponse = gson.fromJson(body, getType(APIResponse.class, type));
                 return apiResponse;
             } catch (IOException e) {

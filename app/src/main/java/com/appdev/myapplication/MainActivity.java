@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.appdev.futurenovajava.APIResponse;
 import com.appdev.futurenovajava.Endpoint;
 import com.appdev.futurenovajava.FutureNovaRequest;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //Set once and then done
         Endpoint.Config config = new Endpoint.Config();
         config.scheme = Optional.of("https");
@@ -29,8 +32,23 @@ public class MainActivity extends AppCompatActivity {
         Endpoint allStopsEndpoint = new Endpoint().path("allstops").method(Endpoint.Method.GET);
 
         FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept((APIResponse<Stops[]> response) -> {
-            System.out.println(response);
+            System.out.println(response.getSuccess());
+            for (Stops stop : response.getData()) {
+                System.out.println(stop.getName());
+            }
         });
 
+
+        search("Statler");
+
+    }
+
+    protected void search(String query) {
+        RequestBody form = new FormBody.Builder().add("query", query).build();
+        Endpoint searchEndpoint = new Endpoint().path("search").body(Optional.of(form)).method(Endpoint.Method.POST);
+
+        FutureNovaRequest.make(Place[].class, searchEndpoint).thenAccept(response -> {
+            System.out.println(response.getSuccess());
+        });
     }
 }

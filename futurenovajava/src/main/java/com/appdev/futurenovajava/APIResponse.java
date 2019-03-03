@@ -1,15 +1,15 @@
 package com.appdev.futurenovajava;
 
-public class APIResponse<T> {
+    public class APIResponse<T> {
 
-    private boolean success;
-    private T data;
+        private boolean success;
+        private T data;
 
-    public boolean getSuccess() {
-        return success;
+        public boolean getSuccess() {
+            return success;
+        }
+
+        public T getData() {
+            return data;
+        }
     }
-
-    public T getData() {
-        return data;
-    }
-}
