@@ -31,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
         Endpoint.config = config;
 
         Endpoint allStopsEndpoint = new Endpoint().path("allstops").method(Endpoint.Method.GET);
-
-        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept((APIResponse<Stops[]> response) -> {
-            System.out.println(response.getSuccess());
-            for (Stops stop : response.getData()) {
-                System.out.println(stop.getName());
-            }
-        });
+//        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept((APIResponse<Stops[]> response) -> {
+//            System.out.println(response.getSuccess());
+//            for (Stops stop : response.getData()) {
+//                System.out.println(stop.getName());
+//            }
+//        });
 
 
         search("Stat");
@@ -57,15 +56,18 @@ public class MainActivity extends AppCompatActivity {
         }
         RequestBody requestBody = RequestBody.create(MediaType.get("application/json; charset=utf-8"), searchJSON.toString());
 
-        RequestBody form = new FormBody.Builder().add("query", query).build();
         Endpoint searchEndpoint = new Endpoint()
                 .path("search")
-                .body(Optional.of(form))
+                .body(Optional.of(requestBody))
                 .headers(map)
                 .method(Endpoint.Method.POST);
 
+
+        //start loading indicator
         FutureNovaRequest.make(Place[].class, searchEndpoint).thenAccept(response -> {
             System.out.println(response.getSuccess());
+            //stop loading indicator
+            //
         });
     }
 }

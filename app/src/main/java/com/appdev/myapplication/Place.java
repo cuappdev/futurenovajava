@@ -9,15 +9,17 @@ public class Place {
     private String type;
     private String name;
 
+    //Optional Fields
+
     @SerializedName("lat")
-    private Optional<Double> latitude;
+    private Double latitude;
 
     @SerializedName("long")
-    private Optional<Double> longitude;
+    private Double longitude;
 
-    private Optional<String> detail;
+    private String detail;
 
-    private Optional<String> placeID;
+    private String placeID;
 
     public String getType() {
         return this.type;
