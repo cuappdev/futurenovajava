@@ -7,7 +7,7 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
-class OkHttpResponseFuture implements Callback {
+public class OkHttpResponseFuture implements Callback {
     public final CompletableFuture<Response> future = new CompletableFuture<>();
 
     public OkHttpResponseFuture() { }

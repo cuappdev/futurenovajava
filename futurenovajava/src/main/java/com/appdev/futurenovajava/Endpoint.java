@@ -4,8 +4,6 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
