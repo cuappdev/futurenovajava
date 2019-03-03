@@ -82,8 +82,9 @@ public class Endpoint {
 
         config.commonHeaders.ifPresent(stringStringMap -> stringStringMap.forEach(requestBuilder::addHeader));
 
-        if(this.body.isPresent()) {
-            requestBuilder.method(Method.POST.name(), this.body.get());
+        Optional<RequestBody> requestBody = this.body;
+        if(requestBody.isPresent()) {
+            requestBuilder.method(Method.POST.name(), requestBody.get());
         } else {
             requestBuilder.method(this.method.name(), null);
         }

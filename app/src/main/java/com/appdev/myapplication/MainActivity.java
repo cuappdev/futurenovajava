@@ -6,12 +6,13 @@ import com.appdev.futurenovajava.APIResponse;
 import com.appdev.futurenovajava.Endpoint;
 import com.appdev.futurenovajava.FutureNovaRequest;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,13 +40,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        search("Statler");
+        search("Stat");
 
     }
 
     protected void search(String query) {
+        Map<String, String> map = new HashMap<String, String>();
+
+        map.put("Content-Type", "application/json");
+
+        JSONObject searchJSON = new JSONObject();
+        try {
+            searchJSON.put("query", query);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(MediaType.get("application/json; charset=utf-8"), searchJSON.toString());
+
         RequestBody form = new FormBody.Builder().add("query", query).build();
-        Endpoint searchEndpoint = new Endpoint().path("search").body(Optional.of(form)).method(Endpoint.Method.POST);
+        Endpoint searchEndpoint = new Endpoint()
+                .path("search")
+                .body(Optional.of(form))
+                .headers(map)
+                .method(Endpoint.Method.POST);
 
         FutureNovaRequest.make(Place[].class, searchEndpoint).thenAccept(response -> {
             System.out.println(response.getSuccess());
