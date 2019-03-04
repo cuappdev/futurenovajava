@@ -5,7 +5,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 import java.util.Map;
-import java.util.Optional;
+import java8.util.Optional;
 
 public class Endpoint {
 
@@ -80,7 +80,13 @@ public class Endpoint {
 
         requestBuilder.url(urlBuilder.build());
 
-        config.commonHeaders.ifPresent(stringStringMap -> stringStringMap.forEach(requestBuilder::addHeader));
+        config.commonHeaders.ifPresent(stringStringMap -> {
+            for (Map.Entry<String, String> entry : stringStringMap.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                requestBuilder.addHeader(key, value);
+            }
+        });
 
         Optional<RequestBody> requestBody = this.body;
         if(requestBody.isPresent()) {
