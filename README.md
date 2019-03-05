@@ -56,7 +56,7 @@ implementation 'com.squareup.okhttp3:okhttp:3.13.1'
 implementation 'com.google.code.gson:gson:2.8.5'
 implementation 'net.sourceforge.streamsupport:streamsupport:1.7.0'
 implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.0'
-implementation 'com.github.cuappdev:futurenovajava:002463b'
+implementation 'com.github.cuappdev:futurenovajava:9ce71f7'
 ```
 
 ## Author
