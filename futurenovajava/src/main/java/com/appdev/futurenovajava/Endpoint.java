@@ -78,6 +78,14 @@ public class Endpoint {
 
         config.port.ifPresent(urlBuilder::port);
 
+        if(this.queryItems != null) {
+            for (Map.Entry<String, String> entry : this.queryItems.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                urlBuilder.addQueryParameter(key, value);
+            }
+        }
+
         requestBuilder.url(urlBuilder.build());
 
         config.commonHeaders.ifPresent(stringStringMap -> {
@@ -87,6 +95,7 @@ public class Endpoint {
                 requestBuilder.addHeader(key, value);
             }
         });
+
 
         Optional<RequestBody> requestBody = this.body;
         if(requestBody.isPresent()) {

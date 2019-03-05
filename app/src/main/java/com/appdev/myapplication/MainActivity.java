@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         Endpoint.config = config;
 
         Endpoint allStopsEndpoint = new Endpoint().path("allstops").method(Endpoint.Method.GET);
-//        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept((APIResponse<Stops[]> response) -> {
-//            System.out.println(response.getSuccess());
-//            for (Stops stop : response.getData()) {
-//                System.out.println(stop.getName());
-//            }
-//        });
+        FutureNovaRequest.make(Stops[].class, allStopsEndpoint).thenAccept((APIResponse<Stops[]> response) -> {
+            System.out.println(response.getSuccess());
+            for (Stops stop : response.getData()) {
+                System.out.println(stop.getName());
+            }
+        });
 
 
         search("Stat");
